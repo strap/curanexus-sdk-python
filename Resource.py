@@ -2,36 +2,30 @@
 import requests
 import re
 
-
 class Resource(object):
 
-	def __init__(self,name,uri,token):
-		#make call for resource details
-		print uri, token, name
-		# r = requests.get(uri,headers={'x-auth-token':token})
-		# res = r.json()
+	def __init__(self,name,json,token):
+		self._name = name;
+		self._token = token;
+		self._uri = json["uri"];
+		self._method = json["method"]
+		self._description = json["description"];
+		self._required = []
+		self._optional = json["optional"]
 
-		# self._name = name;
-		# self._token = token;
-		# self._uri = uri;
-		# self._method = res["method"]
-		# self._description = res["description"];
-		# self._required = []
-		# self._optional = res["optional"]
+	def call(self,method="get",params=None):
+		if params == None:
+			params = {}
 
-	def _call(self,method="get",params={}):
 		# replace url params
 		url = self._uri
 		matches = re.findall(r'\{(\S+?)\}',url)
 		for m in matches:
 			if m in params:
 				url = re.sub('\{'+m+'\}',params[m],url)
-				print url
-		# remove all keys from dict used in url params
-
-		# generate querystring
+				# remove url param from rest of params 
+				params.pop(m,None)
 		
-		# r = requests.get(url,params=params,headers={'x-auth-token':self._token})
-		# res = res.json()
-		# return res
-		return "res"
+		# pass remaining params as querystring
+		r = requests.get(url,params=params,headers={'x-auth-token':self._token})
+		return r.json()

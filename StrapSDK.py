@@ -11,33 +11,36 @@ class StrapSDK(object):
 		self._error = ""
 
 	def _discover(self):
-		headers = {'x-auth-token': self._token}
-		r = requests.get(self._discoveryURL, headers=headers)
+		# get resource list with descriptors
+		r = requests.get(self._discoveryURL, headers={'x-auth-token': self._token})
 
 		# create resource objects out of each service url
-		services = r.json()
+		services, resources = r.json(), {}
 		for s in services:
-			r = Resource(s, services[s], self._token)
-			self._resources[s] = r
+			resources[s] = Resource(s, services[s], self._token)
+		return resources
 
-	def _call(self, serviceName, method="get", params={}):
-		return self._resources[serviceName].call(method, params)
+	def getActivity(self, params=None):
+		if params == None:
+			params = {}
+		return self._resources["activity"].call("get", params)
 
-	def getActivity(self, params={}):
-		return self._call("activity", params)
+	def getToday(self, params=None):
+		if params == None:
+			params = {} 
+		return self._resources["today"].call("get", params)
 
-	def getToday(self, params={}):
-		return self._call("today", params)
+	def getUsers(self, params=None):
+		if params == None:
+			params = {} 
+		return self._resources["users"].call("get", params)
 
-	def getUsers(self, params={}):
-		return self._call("users", params)
+	def getReport(self, params=None):
+		if params == None:
+			params = {} 
+		return self._resources["report"].call("get", params)
 
-	def getReport(self, params={}):
-		return self._call("report", params)
-
-	def getTrigger(self, params={}):
-		return self._call("trigger", params)
-
-if __name__ == '__main__':
-	strap = StrapSDK("hBp4e7HG7KGWJr16OP2HXykw0gaGJY8i")
-	strap.getActivity()
+	def getTrigger(self, params=None):
+		if params == None:
+			params = {} 
+		return self._resources["trigger"].call("get", params)
