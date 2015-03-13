@@ -25,7 +25,7 @@ strap = StrapSDK("3JHG63KV2KKG4646KJVK68JK8KG")
 if not strap.hasError():
   # fill dict with url parameters and/or http request body key-value pairs
   params = {}
-  params["guid"] = "brain-strap"
+  params["guid"] = "yourGuid"
   params["id"] = "PY0XxPm3i7FGQj3KweCpn8xCh"
 
   # make request for data based on params
