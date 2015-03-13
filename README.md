@@ -20,14 +20,14 @@ git clone git@github.com:strap/strap-sdk-python.git
 ```python
   from strap-sdk-python import StrapSDK
 
-  // initialize Strap SDK with read token
+  # initialize Strap SDK with read token
   strap = StrapSDK("QNIODsXElu3W7Csg452ge212GWQ0zjS2W3")
  
-  // fill dict with url parameters and/or http request body key-value pairs
+  # fill dict with url parameters and/or http request body key-value pairs
   params = {}
   params["someKey"] = "someValue"
  
-  // make request for data based on params
+  # make request for data based on params
   activities = strap.getActivity(params)
   print activities.data
   print activities.error
