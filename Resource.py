@@ -28,4 +28,15 @@ class Resource(object):
 		
 		# pass remaining params as querystring
 		r = requests.get(url,params=params,headers={'x-auth-token':self._token})
-		return r.json()
+		return package_error_with_data(r.json())
+
+	def package_error_with_data(res):
+		rv = {
+			data : res,
+			error : ""
+		}
+		if "success" in res:
+			if res["success"] == false:
+				rv["data"] = ""
+				rv["error"] = res
+		return rv
