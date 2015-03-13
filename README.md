@@ -18,16 +18,17 @@ git clone git@github.com:strap/strap-sdk-python.git
 
 ### Usage
 ```python
-  from strap-sdk-python import StrapSDK
+from strap-sdk-python import StrapSDK
 
-  // initialize Strap SDK with read token
-  strap = StrapSDK("QNIODsXElu3W7Csg452ge212GWQ0zjS2W3")
- 
-  // fill dict with url parameters and/or http request body key-value pairs
+# initialize Strap SDK with read token
+strap = StrapSDK("3JHG63KV2KKG4646KJVK68JK8KG")
+if not strap.hasError():
+  # fill dict with url parameters and/or http request body key-value pairs
   params = {}
-  params["someKey"] = "someValue"
- 
-  // make request for data based on params
+  params["guid"] = "brain-strap"
+  params["id"] = "PY0XxPm3i7FGQj3KweCpn8xCh"
+
+  # make request for data based on params
   activities = strap.getActivity(params)
   print activities.data
   print activities.error
@@ -47,5 +48,7 @@ git clone git@github.com:strap/strap-sdk-python.git
   trigger = strap.getTrigger(params)
   print trigger.data
   print trigger.error
+else:
+  print strap.error
 ```
 
