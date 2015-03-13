@@ -24,6 +24,7 @@ git clone git@github.com:strap/strap-sdk-python.git
   strap = StrapSDK("QNIODsXElu3W7Csg452ge212GWQ0zjS2W3")
  
   // fill dict with url parameters and/or http request body key-value pairs
+  params = {}
   params["someKey"] = "someValue"
  
   // make request for data based on params
