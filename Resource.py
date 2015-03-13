@@ -20,7 +20,7 @@ class Resource(object):
 	def __init__(self,name,json,token):
 		self._name = name;
 		self._token = token;
-		self._uri = json["uri"];
+		self._uri = json["uri"].encode('utf-8');
 		self._method = json["method"]
 		self._description = json["description"];
 		self._optional = set(json["optional"])
@@ -38,19 +38,22 @@ class Resource(object):
 				# remove url param from rest of params 
 				params.pop(m,None)
 
-		# only pass params if on optional list
-		valid = filter(lambda p: p in self._optional,params)
-		
-		# pass remaining valid params as querystring
-		r = requests.get(url,params=valid,headers={'x-auth-token':self._token})
+		# build list of items to be removed from querystring
+		toRemove = [ p for p in params if p not in self._optional ]
 
+		# remove all invalid items from querystring
+		filter(lambda p: params.pop(p,None),toRemove)
+
+		# pass remaining valid params as querystring
+		r = requests.get(url,params=params,headers={'x-auth-token':self._token})
+		
 		return self._package_error_with_data(r.json())
 
 	def _package_error_with_data(self,res=None):
 		if res == None:
 			res = ""
 
-		rv = StrapResponse(res,None)
+		rv = StrapResponse(res)
 		if "success" in res:
 			if res["success"] == False:
 				rv.setError(res)
