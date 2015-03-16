@@ -13,12 +13,13 @@ Once the above has been fetched, strapSDK will fetch the API discover endpoint f
 ### Installation
 
 ```
-git clone git@github.com:strap/strap-sdk-python.git
+curl -O URL
+pip install strap-1.0.tar.gz
 ```
 
 ### Usage
 ```python
-from strap-sdk-python import StrapSDK
+from strap.SDK import StrapSDK
 
 # initialize Strap SDK with read token
 strap = StrapSDK("3JHG63KV2KKG4646KJVK68JK8KG")
