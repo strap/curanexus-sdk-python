@@ -13,8 +13,8 @@ Once the above has been fetched, strapSDK will fetch the API discover endpoint f
 ### Installation
 
 ```
-curl -O URL
-pip install strap-1.0.tar.gz
+curl -O https://s3.amazonaws.com/strap-sdk/strap-sdk-python.tar.gz
+pip install strap-sdk-pythontar.gz
 ```
 
 ### Usage
