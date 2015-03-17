@@ -22,12 +22,12 @@ pip install strap-sdk-python.tar.gz
 from strap.SDK import StrapSDK
 
 # initialize Strap SDK with read token
-strap = StrapSDK("3JHG63KV2KKG4646KJVK68JK8KG")
+strap = StrapSDK("ReadToken")
 if not strap.hasError():
   # fill dict with url parameters and/or http request body key-value pairs
   params = {}
   params["guid"] = "yourGuid"
-  params["id"] = "PY0XxPm3i7FGQj3KweCpn8xCh"
+  params["id"] = "ID of activity"
 
   # make request for data based on params
   activities = strap.getActivity(params)
