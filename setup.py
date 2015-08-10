@@ -2,9 +2,9 @@ from distutils.core import setup
 # from setuptools import setup
 setup(
 	name='strap',
-	version='1.0',
+	version='1.1',
 	packages=['strap'],
 	install_requires=[
-        "requests==2.5.3",
+        "requests==2.7.0",
     ],
 )
