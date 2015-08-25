@@ -156,6 +156,9 @@ class StrapSDK(object):
     def getJobs(self, params={}):
         return self._resources["GET"]["job"].call(params)
 
+    def getJobData(self, params={}):
+        return self._resources["GET"]["job_data"].call(params)
+
     def getBehavior(self, params={'guid': 'none'}):
         return self._resources["GET"]["behavior"].call(params)
 
@@ -173,3 +176,13 @@ class StrapSDK(object):
 
     def deleteJob(self, params={}):
         return self._resources["DELETE"]["job"].call(params);
+
+    def getFood(self, params={'id': 'none'}):
+        print self._resources["GET"]
+        return self._resources["GET"]["report_food"].call(params)
+
+    def getWorkout(self, params={'id': 'none'}):
+        return self._resources["GET"]["report_workout"].call(params)
+
+    def getTrend(self, params={'guid': 'none'}):
+        return self._resources["GET"]["trend"].call(params)
