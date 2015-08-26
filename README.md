@@ -62,6 +62,10 @@ if not strap.hasError():
   print trigger.data
   print trigger.error
 
+  triggerUsers = strap.getTriggerData(params)
+  print triggerUsers.data
+  print triggerUsers.error
+
   segments = strap.getSegmentations(params)
   print segments.data
   print segments.error

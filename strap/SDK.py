@@ -153,6 +153,9 @@ class StrapSDK(object):
     def getTrigger(self, params={}):
         return self._resources["GET"]["trigger"].call(params)
 
+    def getTriggerData(self, params={}):
+        return self._resources["GET"]["trigger_data"].call(params)
+
     def getJobs(self, params={}):
         return self._resources["GET"]["job"].call(params)
 
