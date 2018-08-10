@@ -105,7 +105,7 @@ class StrapSDK(object):
 
     def __init__(self, token):
         self.error = None
-        self._discoveryURL = "https://api2.straphq.com/discover"
+        self._discoveryURL = "https://api.curanexus.io/discover"
         self._token = token
         self._resources = self._discover()
 
